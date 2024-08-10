@@ -1,6 +1,6 @@
 import Logo from "../assets/images/logo1.png";
 import GoogleIcon from "../assets/icons/google.png";
-import { Form, Formik, Field } from "formik";
+import { Form, Formik } from "formik";
 import { PiEnvelopeSimpleThin } from "react-icons/pi";
 import { CiLock } from "react-icons/ci";
 import BrandedField from "../components/forms/brandedfield";
