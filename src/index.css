@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply transition-all duration-[0.35s];
+  font-family: "Poppins", sans-serif;
+}
+
+.no-scrollbar {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* For WebKit-based browsers (Chrome, Safari, etc.) */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #f5f5f5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #b8bed9;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c7c7cd;
+}
+
+.center {
+  @apply flex flex-col justify-center items-center;
+}
+
+.dbg {
+  @apply border border-red-500;
+}
+
+@layer components {
+  .btn-1 {
+    @apply bg-accent text-neutral font-semibold px-4 py-3 rounded-md hover:bg-primary w-full disabled:pointer-events-none disabled:bg-accent/50 select-none;
+  }
+
+  .form-field-outline {
+    @apply border text-sm lg:text-base  border-background bg-primary placeholder:text-background text-background outline-none  rounded-8 px-2 py-2 w-full block;
+  }
+
+  .form-field-primary {
+    @apply w-full block bg-transparent  py-3 px-4 pl-12  rounded-[5px] text-[#2A2A2A]  placeholder:text-[#0000004D] border border-[#00000042]  outline-none focus:border-contrast   focus:text-primary text-sm md:text-base;
+  }
+}
