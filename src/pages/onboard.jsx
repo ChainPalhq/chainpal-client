@@ -1,14 +1,31 @@
 import Logo from "../assets/images/logo1.png";
 import { Form, Formik } from "formik";
-import { PiEnvelopeSimpleThin } from "react-icons/pi";
 import { CiUser } from "react-icons/ci";
-import { CiFlag1 } from "react-icons/ci";
-import { CiMobile1 } from "react-icons/ci";
 import BrandedField from "../components/forms/brandedfield";
 import * as Yup from "yup";
 import HeroSection from "../components/herosection";
+import { parsePhoneNumber } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
-const onboardSchema = Yup.object().shape({});
+const onboardSchema = Yup.object().shape({
+  country: Yup.string().required("Country is required"),
+  firstName: Yup.string()
+    .required("First Name is required")
+    .min(2, "Too short")
+    .max(50, "Too long"),
+  lastName: Yup.string()
+    .required("Last Name is required")
+    .min(2, "Too short")
+    .max(50, "Too long"),
+  phoneNumber: Yup.string()
+    .required("Phone Number is required")
+    .test("valid-number", "Invalid phone number", (value) => {
+      if (!value) return false;
+      const phoneNumber = parsePhoneNumber(value);
+      return phoneNumber ? phoneNumber.isValid() : false;
+    }),
+});
 
 export default function Onboard() {
   return (
@@ -17,12 +34,11 @@ export default function Onboard() {
         <HeroSection title="For Freelancers!" />
 
         <div className="bg-neutral h-screen  flex flex-col justify-start  items-center">
-          <div className="w-[90%] pt-16 space-y-4 ">
+          <div className="w-[80%] pt-16 space-y-4 ">
             <img src={Logo} alt="logo" className=" " />
             <div className="lg:pl-[4vw] flex flex-col space-y-4 ">
               <h1 className="text-2xl lg:text-3xl text-contrast font-bold">
-                {" "}
-                Verify Phone number
+                Personal Info
               </h1>
 
               <Formik
@@ -37,15 +53,15 @@ export default function Onboard() {
                   console.log(values);
                 }}
               >
-                {({ isValid }) => {
+                {({ isValid, values, setFieldValue }) => {
                   return (
                     <Form className="max-w-lg space-y-6">
-                      <BrandedField
+                      {/* <BrandedField
                         name="country"
                         type="text"
                         placeholder="Country"
                         icon={CiFlag1}
-                      />
+                      /> */}
 
                       <BrandedField
                         name="firstName"
@@ -61,11 +77,12 @@ export default function Onboard() {
                         icon={CiUser}
                       />
 
-                      <BrandedField
-                        name="phoneNumber"
-                        type="tel"
+                      <PhoneInput
                         placeholder="Phone Number"
-                        icon={CiMobile1}
+                        value={values.phoneNumber}
+                        onChange={(value) => {
+                          setFieldValue("phoneNumber", value);
+                        }}
                       />
 
                       <p className="text-secondary w-full text-center">

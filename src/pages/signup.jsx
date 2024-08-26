@@ -23,7 +23,7 @@ export default function SignUp() {
         <HeroSection title="For Freelancers!" />
 
         <div className="bg-neutral h-screen  flex flex-col justify-start  items-center">
-          <div className="w-[90%] pt-16 space-y-8 ">
+          <div className="w-[80%] pt-16 space-y-8 ">
             <img src={Logo} alt="logo" className=" " />
             <div className="lg:pl-[4vw] flex flex-col ">
               <h1 className="text-2xl lg:text-3xl text-contrast font-bold">

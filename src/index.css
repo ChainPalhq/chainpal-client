@@ -7,6 +7,14 @@
   font-family: "Poppins", sans-serif;
 }
 
+.PhoneInput {
+  @apply w-full flex flex-row bg-transparent   px-4   rounded-[5px] text-[#2A2A2A]  placeholder:text-[#0000004D] border border-[#00000042]  outline-none focus:border-contrast   focus:text-primary text-sm md:text-base;
+}
+
+.PhoneInput input {
+  @apply w-full  bg-transparent  py-3 px-4 border-none text-[#2A2A2A]  placeholder:text-[#0000004D] border border-[#00000042]  outline-none focus:border-contrast   focus:text-primary text-sm md:text-base;
+}
+
 .no-scrollbar {
   scrollbar-width: none; /* For Firefox */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
