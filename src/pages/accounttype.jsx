@@ -3,19 +3,33 @@ import HeroSection from "../components/herosection";
 import NomadIcon from "../assets/icons/nomad.png";
 import BusinessIcon from "../assets/icons/business.png";
 import Loader from "../components/loader";
+import { useState } from "react";
+import { IoMdCheckmarkCircle } from "react-icons/io";
 
 const accountTypes = [
   {
     description: "Business",
     icon: BusinessIcon,
+    name: "BUSINESS",
   },
   {
     description: "Freelancer",
     icon: NomadIcon,
+    name: "FREELANCER",
   },
 ];
 
 export default function AccountType() {
+  const [selectedAccountType, setSelectedAccountType] = useState(null);
+
+  const selectAccountType = (type) => {
+    return () => {
+      setSelectedAccountType(type);
+    };
+  };
+
+  const isValid = selectedAccountType !== null;
+
   return (
     <div className="w-full min-h-screen ">
       <main className="w-full grid grid-cols-1 lg:grid-cols-2">
@@ -38,7 +52,8 @@ export default function AccountType() {
                   {accountTypes.map((type, index) => (
                     <div
                       key={index}
-                      className="rounded border py-8 border-accent bg-[#0070E00F] flex flex-row space-x-4 min-w-[200px] items-center justify-center px-4 cursor-pointer hover:ring-1 hover:ring-accent"
+                      onClick={selectAccountType(type.name)}
+                      className="rounded border py-8 border-accent/20 bg-[#0070E00F] flex flex-row space-x-2 min-w-[200px] items-center justify-center px-4 cursor-pointer hover:ring-1 hover:ring-accent "
                     >
                       <img
                         src={type.icon}
@@ -51,6 +66,9 @@ export default function AccountType() {
                       >
                         {type.description}
                       </span>
+                      {selectedAccountType === type.name && (
+                        <IoMdCheckmarkCircle className="text-green-500  text-xl" />
+                      )}
                     </div>
                   ))}
                 </div>
@@ -59,6 +77,7 @@ export default function AccountType() {
                   <button
                     type="button"
                     role="button"
+                    disabled={!isValid}
                     className=" btn-1 w-full "
                   >
                     {false ? <Loader inverted /> : "Next"}
