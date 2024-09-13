@@ -6,6 +6,7 @@ import Verify from "./pages/verify";
 import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
 import Dashboard from "./pages/dashboard";
+import Transactions from "./pages/transactions";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient({
@@ -29,6 +30,7 @@ function App() {
           <Route path="/account-type" component={AccountType} />
           <Route path="/business-name" component={BusinessName} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/transactions" component={Transactions} />
         </Switch>
       </QueryClientProvider>
     </div>

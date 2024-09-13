@@ -14,6 +14,7 @@ import SL11 from "../assets/icons/sl11.png";
 import SL12 from "../assets/icons/sl12.png";
 import SL13 from "../assets/icons/sl13.png";
 import cn from "classnames";
+import { useLocation } from "wouter";
 
 const sidebarItems = [
   {
@@ -23,21 +24,25 @@ const sidebarItems = [
       {
         name: "Transactions",
         img: SL1,
+        pathname: "/transactions",
       },
 
       {
         name: "Payout",
         img: SL4,
+        pathname: "/payout",
       },
 
       {
         name: "Wallet",
         img: SL5,
+        pathname: "/wallet",
       },
 
       {
         name: "Invoice",
         img: SL8,
+        pathname: "/invoice",
       },
     ],
   },
@@ -49,31 +54,37 @@ const sidebarItems = [
       {
         name: "Payment Link",
         img: SL2,
+        pathname: "/payment-link",
       },
 
       {
         name: "Store Front",
 
         img: SL11,
+        pathname: "/store-front",
       },
 
       {
         name: "Customers",
         img: SL13,
+        pathname: "/customers",
       },
       {
         name: "Analytics",
         img: SL6,
+        pathname: "/analytics",
       },
 
       {
         name: "Integration",
         img: SL7,
+        pathname: "/integration",
       },
 
       {
         name: "Marketplace",
         img: SL12,
+        pathname: "/marketplace",
       },
     ],
   },
@@ -84,16 +95,20 @@ const sidebarItems = [
       {
         name: "Log out",
         img: SL9,
+        pathname: "/logout",
       },
       {
         name: "Need Help?",
 
         img: SL10,
+        pathname: "/help",
       },
     ],
   },
 ];
 export default function Sidebar({ collapsed, setCollapsed }) {
+  const [location, setLocation] = useLocation();
+
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
   };
@@ -144,11 +159,19 @@ export default function Sidebar({ collapsed, setCollapsed }) {
               )}
 
               {section.items.map((item, index) => {
+                const active = location === item.pathname;
+
                 return (
                   <div
                     key={index}
                     title={collapsed ? item.name : ""}
-                    className="flex flex-row justify-start items-center space-x-2 px-4 py-2 hover:bg-[#0070E029] cursor-pointer"
+                    className={
+                      "flex flex-row justify-start items-center space-x-2 px-4 py-2 cursor-pointer " +
+                      cn(
+                        active && "bg-[#0070E029]",
+                        !active && "  hover:bg-[#0070E029] "
+                      )
+                    }
                   >
                     <img src={item.img} alt={item.name} className=" " />
 

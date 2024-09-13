@@ -1,17 +1,11 @@
 import Sidebar from "../components/sidebar";
-import { MdOutlineToggleOff, MdToggleOn } from "react-icons/md";
-import { GoBellFill, GoChevronDown } from "react-icons/go";
-import Avatar from "../assets/images/avatar.png";
 import NumberFormat from "../components/numberformat";
-import {
-  IoIosArrowRoundDown,
-  IoIosArrowRoundUp,
-  IoIosArrowRoundForward,
-} from "react-icons/io";
+import { IoIosArrowRoundUp, IoIosArrowRoundForward } from "react-icons/io";
 import { XAxis, YAxis, AreaChart, Tooltip, Area } from "recharts";
 import { useState } from "react";
 import cn from "classnames";
 import KYCPrompt from "../components/kycprompt";
+import SubHeader from "../components/subheader";
 
 const data = [
   {
@@ -98,27 +92,7 @@ export default function Dashboard() {
       >
         {/* l1 */}
 
-        <div className="px-6 flex flex-row justify-between items-center">
-          <h1 className="font-bold text-2xl text-black">Dashboard</h1>
-
-          <div className="flex flex-row justify-end space-x-8 items-center">
-            <div className="flex flex-row justify-start items-center space-x-2">
-              <MdOutlineToggleOff className="text-4xl text-[#757575]" />
-              <span className="text-[#BDC1C6]">Testnet</span>
-            </div>
-
-            <GoBellFill className="text-2xl text-[#BDC1C6]" />
-
-            <div className="flex flex-row justify-start items-center space-x-1">
-              <img
-                src={Avatar}
-                alt="avatar"
-                className="w-10 h-10 rounded-full"
-              />
-              <GoChevronDown className="text-2xl text-[#BDC1C6]" />
-            </div>
-          </div>
-        </div>
+        <SubHeader title="Dashboard" />
 
         {/* l2 */}
 
