@@ -1,11 +1,28 @@
-import { GoBellFill, GoChevronDown } from "react-icons/go";
+import { GoBellFill, GoChevronDown, GoChevronRight } from "react-icons/go";
 import { MdOutlineToggleOff } from "react-icons/md";
 import Avatar from "../assets/images/avatar.png";
 
-export default function SubHeader({ title = "Dashboard" }) {
+export default function SubHeader({ title = "Dashboard", crumbs = null }) {
   return (
     <div className="px-6 flex flex-row justify-between items-center">
-      <h1 className="font-bold text-2xl text-black"> {title} </h1>
+      <div className="flex flex-row justify-start items-center space-x-4">
+        <h1 className="font-bold text-2xl text-black"> {title} </h1>
+
+        {crumbs && crumbs.length > 0 && (
+          <GoChevronRight className="text-[#6D7D93] text-sm" />
+        )}
+
+        {crumbs && (
+          <div className="flex flex-row space-x-2 items-center justify-start text-[#6D7D93] text-sm">
+            {crumbs.map((crumb, index) => (
+              <div key={index} className="flex flex-row space-x-1 items-center">
+                <span className="font-medium">{crumb.name}</span>
+                {index !== crumbs.length - 1 && <GoChevronRight />}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       <div className="flex flex-row justify-end space-x-8 items-center">
         <div className="flex flex-row justify-start items-center space-x-2">

@@ -159,7 +159,8 @@ export default function Sidebar({ collapsed, setCollapsed }) {
               )}
 
               {section.items.map((item, index) => {
-                const active = location === item.pathname;
+                const active =
+                  location.startsWith(item.pathname) && location !== "/";
 
                 return (
                   <div

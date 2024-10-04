@@ -7,6 +7,7 @@ import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
 import Dashboard from "./pages/dashboard";
 import Transactions from "./pages/transactions";
+import TransactionDetail from "./pages/transactiondetail";
 import Payout from "./pages/payout";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -32,6 +33,10 @@ function App() {
           <Route path="/business-name" component={BusinessName} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/transactions" component={Transactions} />
+          <Route
+            path="/transactions/:transactionId"
+            component={TransactionDetail}
+          />
           <Route path="/payout" component={Payout} />
         </Switch>
       </QueryClientProvider>
