@@ -14,7 +14,7 @@ import SL11 from "../assets/icons/sl11.png";
 import SL12 from "../assets/icons/sl12.png";
 import SL13 from "../assets/icons/sl13.png";
 import cn from "classnames";
-import { useLocation } from "wouter";
+import { Link, useLocation } from "wouter";
 
 const sidebarItems = [
   {
@@ -163,7 +163,8 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                   location.startsWith(item.pathname) && location !== "/";
 
                 return (
-                  <div
+                  <Link
+                    to={item.pathname}
                     key={index}
                     title={collapsed ? item.name : ""}
                     className={
@@ -181,7 +182,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
                         {item.name}
                       </h3>
                     )}
-                  </div>
+                  </Link>
                 );
               })}
             </div>

@@ -1,5 +1,4 @@
 import Sidebar from "../components/sidebar";
-import NumberFormat from "../components/numberformat";
 import { useState } from "react";
 import cn from "classnames";
 import SubHeader from "../components/subheader";
@@ -7,11 +6,13 @@ import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import FiatPayoutTable from "../components/payout/fiatpayouttable";
 import CryptoPayoutTable from "../components/payout/cryptopayouttable";
+import PayoutRequestForm from "../components/payout/payoutrequestform";
 
 export default function Payout() {
   const [collapsed, setCollapsed] = useState(false);
 
   const [showIndex, setShowIndex] = useState(0);
+  const [showPayoutForm, setShowPayoutForm] = useState(false);
 
   function chooseIndex(index) {
     return () => setShowIndex(index);
@@ -20,6 +21,10 @@ export default function Payout() {
   return (
     <div className="w-full min-h-screen ">
       {/* overlay  */}
+
+      {showPayoutForm && (
+        <PayoutRequestForm hideMe={() => setShowPayoutForm(false)} />
+      )}
 
       <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
 
@@ -60,7 +65,12 @@ export default function Payout() {
                 </div>
 
                 <div className="inline-flex space-x-2 pb-6 text-[#6D7D93]">
-                  <button className="btn-1">Payout Request</button>
+                  <button
+                    onClick={() => setShowPayoutForm(true)}
+                    className="btn-1"
+                  >
+                    Payout Request
+                  </button>
                 </div>
               </div>
 
