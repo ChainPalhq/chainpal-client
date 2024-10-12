@@ -1,11 +1,12 @@
 import Sidebar from "../components/sidebar";
 import NumberFormat from "../components/numberformat";
-import { IoIosArrowRoundUp, IoIosArrowRoundForward } from "react-icons/io";
+import { IoIosArrowRoundUp } from "react-icons/io";
 import { XAxis, YAxis, AreaChart, Tooltip, Area } from "recharts";
 import { useState } from "react";
 import cn from "classnames";
 import KYCPrompt from "../components/kycprompt";
 import SubHeader from "../components/subheader";
+import RecentTransactions from "../components/recenttransactions";
 
 const data = [
   {
@@ -101,7 +102,7 @@ export default function Dashboard() {
             return (
               <div
                 key={i}
-                className="bg-[#F8F9FD] p-6 space-y-4 rounded self-stretch group hover:bg-primary cursor-default"
+                className="bg-[#F8F9FD] flex flex-col p-6 space-y-4 rounded self-stretch group hover:bg-primary cursor-default"
               >
                 <h1 className="text-[#6D7D93] group-hover:text-white">
                   {v.name}
@@ -167,49 +168,7 @@ export default function Dashboard() {
             Recent Transactions
           </h3>
 
-          <div className="w-full border border-[#6D7D9326] p-6 rounded shadow">
-            <div className="flex flex-row justify-between items-center  border-b border-[#6D7D9380]">
-              <p className="font-bold text-accent pb-6 border-b-2 border-accent">
-                Transactions
-              </p>
-
-              <div className="inline-flex space-x-2 pb-6 text-[#6D7D93]">
-                <p>View more</p>
-                <IoIosArrowRoundForward className=" text-2xl" />
-              </div>
-            </div>
-
-            <table className="appearance-none w-full ">
-              <tr className="text-[#6D7D93] w-full text-left ">
-                <th className="py-4">Amount</th>
-                <th>Customer</th>
-                <th>Reference</th>
-                <th>Channel</th>
-                <th>Date</th>
-                <th>Status</th>
-              </tr>
-
-              {[1, 2, 3, 4, 5].map((v, i) => {
-                return (
-                  <tr key={i} className="text-[#6D7D93] w-full text-left">
-                    <td className="py-2">
-                      <NumberFormat value={i * 1000 + 2900} />
-                    </td>
-                    <td>James Onos</td>
-
-                    <td>#T537383938739</td>
-                    <td>Crypto</td>
-                    <td>
-                      <span>12/12/2021</span>
-                    </td>
-                    <td>
-                      <span className="text-green-600">Successful</span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </table>
-          </div>
+          <RecentTransactions />
         </div>
       </div>
     </div>

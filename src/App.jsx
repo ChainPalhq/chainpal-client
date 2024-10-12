@@ -2,6 +2,8 @@ import { Route, Switch, Redirect } from "wouter";
 import SignUp from "./pages/signup";
 import SignIn from "./pages/signin";
 import Onboard from "./pages/onboard";
+import Wallet from "./pages/wallet";
+import FiatWallet from "./pages/fiatwallet";
 import Verify from "./pages/verify";
 import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
@@ -9,7 +11,7 @@ import Dashboard from "./pages/dashboard";
 import Transactions from "./pages/transactions";
 import TransactionDetail from "./pages/transactiondetail";
 import Payout from "./pages/payout";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,6 +40,8 @@ function App() {
             component={TransactionDetail}
           />
           <Route path="/payout" component={Payout} />
+          <Route path="/wallet" component={Wallet} />
+          <Route path="/wallet/fiat" component={FiatWallet} />
         </Switch>
       </QueryClientProvider>
     </div>

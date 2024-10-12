@@ -1,9 +1,62 @@
 import { Form, Formik } from "formik";
-import BrandedField from "../forms/brandedfield";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaNairaSign } from "react-icons/fa6";
+import { FaDollarSign, FaEuroSign } from "react-icons/fa";
+import cn from "classnames";
+import { useState } from "react";
+import DropDownList from "../dropdownlist";
+import { GoChevronDown } from "react-icons/go";
+import NumberFormattingField from "../forms/numberformattingfield";
+
+const currencies = [
+  {
+    name: "NGN",
+    icon: FaNairaSign,
+  },
+  {
+    name: "USD",
+    icon: FaDollarSign,
+  },
+  {
+    name: "EUR",
+    icon: FaEuroSign,
+  },
+];
+
+const bankAccounts = [
+  {
+    name: "UNITED BANK OF AMERICA",
+  },
+  {
+    name: "FIRST BANK OF NIGERIA",
+  },
+
+  {
+    name: "ACCESS BANK",
+  },
+  {
+    name: "ZENITH BANK",
+  },
+];
 
 export default function FiatPayout({ hideMe }) {
+  const [selectedCurrency, setSelectedCurrency] = useState(currencies[0]);
+  const [selectedBankAccount, setSelectedBankAccount] = useState(
+    bankAccounts[0]
+  );
+  const [showDropdown1, setShowDropdown1] = useState(false);
+  const [showDropdown2, setShowDropdown2] = useState(false);
+
+  function onSelectCurrency(currency) {
+    setSelectedCurrency(currency);
+    setShowDropdown1(false);
+  }
+
+  function onSelectBankAccount(bankAccount) {
+    setSelectedBankAccount(bankAccount);
+    setShowDropdown2(false);
+  }
+
   return (
     <div className="w-full">
       <Formik initialValues={{}}>
@@ -14,16 +67,40 @@ export default function FiatPayout({ hideMe }) {
                 <label className="text-sm text-[#6D7D93]">
                   Select Currency
                 </label>
-                <BrandedField
-                  name="currency"
-                  type="text"
-                  placeholder=""
-                  icon={() => <span className="inline-block mr-4">NGN</span>}
-                />
+
+                <div className="relative">
+                  <div
+                    onClick={() => setShowDropdown1(!showDropdown1)}
+                    className="rounded-[5px] px-4 py-3 border border-[#00000042] flex flex-row justify-between space-x-2 text-base font-medium cursor-pointer "
+                  >
+                    <span className="inline-block self-center">
+                      {selectedCurrency.name
+                        ? currencies.find(
+                            (item) => item.name === selectedCurrency.name
+                          ).name
+                        : "Currency"}
+                    </span>
+                    <GoChevronDown
+                      className={
+                        "text-xl text-[#6D7D93] self-center " +
+                        cn(showDropdown1 && "transform rotate-180")
+                      }
+                    />
+                  </div>
+
+                  {/* dropdown  */}
+
+                  <DropDownList
+                    items={currencies}
+                    onSelect={onSelectCurrency}
+                    show={showDropdown1}
+                    closeSelf={() => setShowDropdown1(false)}
+                  />
+                </div>
               </div>
               <div className="max-w-[437px]">
                 <label className="text-sm text-[#6D7D93]">Enter amount</label>
-                <BrandedField
+                <NumberFormattingField
                   name="inputAmount"
                   type="text"
                   placeholder=""
@@ -37,7 +114,7 @@ export default function FiatPayout({ hideMe }) {
 
                   <BsFillInfoCircleFill className="text-xs items-center " />
                 </label>
-                <BrandedField
+                <NumberFormattingField
                   name="outputAmount"
                   type="text"
                   placeholder=""
@@ -49,16 +126,35 @@ export default function FiatPayout({ hideMe }) {
                 <label className="text-sm text-[#6D7D93]">
                   Select Bank Account
                 </label>
-                <BrandedField
-                  name="bankAccount"
-                  type="text"
-                  placeholder=""
-                  icon={() => (
-                    <span className="inline-block mr-4">
-                      UNITED BANK OF AMERICA
+                <div className="relative">
+                  <div
+                    onClick={() => setShowDropdown2(!showDropdown2)}
+                    className="rounded-[5px] px-4 py-3 border border-[#00000042] flex flex-row justify-between space-x-2 text-base font-medium cursor-pointer "
+                  >
+                    <span className="inline-block self-center">
+                      {selectedBankAccount.name
+                        ? bankAccounts.find(
+                            (item) => item.name === selectedBankAccount.name
+                          ).name
+                        : "Bank Account"}
                     </span>
-                  )}
-                />
+                    <GoChevronDown
+                      className={
+                        "text-xl text-[#6D7D93] self-center " +
+                        cn(showDropdown2 && "transform rotate-180")
+                      }
+                    />
+                  </div>
+
+                  {/* dropdown  */}
+
+                  <DropDownList
+                    items={bankAccounts}
+                    onSelect={onSelectBankAccount}
+                    show={showDropdown2}
+                    closeSelf={() => setShowDropdown2(false)}
+                  />
+                </div>
               </div>
 
               <div className="flex flex-row justify-end items-center space-x-8">

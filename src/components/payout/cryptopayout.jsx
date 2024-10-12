@@ -1,8 +1,53 @@
 import { Form, Formik } from "formik";
-import BrandedField from "../forms/brandedfield";
 import { BsFillInfoCircleFill } from "react-icons/bs";
+import DropDownList from "../dropdownlist";
+import { GoChevronDown } from "react-icons/go";
+import cn from "classnames";
+import { useState } from "react";
+import NumberFormattingField from "../forms/numberformattingfield";
+
+const cryptoCurrencies = [
+  {
+    name: "BTC",
+  },
+  {
+    name: "ETH",
+  },
+  {
+    name: "USDT",
+  },
+];
+
+const payoutAddresses = [
+  {
+    name: "My BTC Wallet",
+  },
+  {
+    name: "My ETH Wallet",
+  },
+  {
+    name: "My USDT Wallet",
+  },
+];
 
 export default function CryptoPayout({ hideMe }) {
+  const [showDropdown1, setShowDropdown1] = useState(false);
+  const [showDropdown2, setShowDropdown2] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState(cryptoCurrencies[0]);
+  const [selectedPayoutAddress, setSelectedPayoutAddress] = useState(
+    payoutAddresses[0]
+  );
+
+  function onSelectCurrency(currency) {
+    setSelectedCurrency(currency);
+    setShowDropdown1(false);
+  }
+
+  function onSelectPayoutAddress(payoutAddress) {
+    setSelectedPayoutAddress(payoutAddress);
+    setShowDropdown2(false);
+  }
+
   return (
     <div className="w-full">
       <Formik initialValues={{}}>
@@ -13,22 +58,46 @@ export default function CryptoPayout({ hideMe }) {
                 <label className="text-sm text-[#6D7D93]">
                   Select Currency
                 </label>
-                <BrandedField
-                  name="currency"
-                  type="text"
-                  placeholder=""
-                  icon={() => (
-                    <span className="inline-block mr-4">BTC - BITCOIN</span>
-                  )}
-                />
+                <div className="relative">
+                  <div
+                    onClick={() => setShowDropdown1(!showDropdown1)}
+                    className="rounded-[5px] px-4 py-3 border border-[#00000042] flex flex-row justify-between space-x-2 text-base font-medium cursor-pointer "
+                  >
+                    <span className="inline-block self-center">
+                      {selectedCurrency.name
+                        ? cryptoCurrencies.find(
+                            (item) => item.name === selectedCurrency.name
+                          ).name
+                        : "Currency"}
+                    </span>
+                    <GoChevronDown
+                      className={
+                        "text-xl text-[#6D7D93] self-center " +
+                        cn(showDropdown1 && "transform rotate-180")
+                      }
+                    />
+                  </div>
+
+                  {/* dropdown  */}
+
+                  <DropDownList
+                    items={cryptoCurrencies}
+                    onSelect={onSelectCurrency}
+                    show={showDropdown1}
+                    closeSelf={() => setShowDropdown1(false)}
+                  />
+                </div>
               </div>
               <div className="max-w-[437px] relative">
                 <label className="text-sm text-[#6D7D93]">Enter amount</label>
-                <BrandedField
+                <NumberFormattingField
                   name="inputAmount"
                   type="text"
                   placeholder=""
-                  icon={() => <span className="inline-block mr-4">BTC</span>}
+                  iconPadding
+                  icon={({ className }) => (
+                    <span className={className}>BTC</span>
+                  )}
                 />
 
                 <span className="text-xs text-[#0070E0] text-right absolute -bottom-[25%] right-0">
@@ -42,11 +111,14 @@ export default function CryptoPayout({ hideMe }) {
 
                   <BsFillInfoCircleFill className="text-xs items-center" />
                 </label>
-                <BrandedField
+                <NumberFormattingField
                   name="outputAmount"
                   type="text"
                   placeholder=""
-                  icon={() => <span className="inline-block mr-4">BTC</span>}
+                  iconPadding
+                  icon={({ className }) => (
+                    <span className={className}>BTC</span>
+                  )}
                 />
               </div>
 
@@ -54,14 +126,35 @@ export default function CryptoPayout({ hideMe }) {
                 <label className="text-sm text-[#6D7D93]">
                   Select Payout Address
                 </label>
-                <BrandedField
-                  name="bankAccount"
-                  type="text"
-                  placeholder=""
-                  icon={() => (
-                    <span className="inline-block mr-4">My BTC Wallet</span>
-                  )}
-                />
+                <div className="relative">
+                  <div
+                    onClick={() => setShowDropdown2(!showDropdown2)}
+                    className="rounded-[5px] px-4 py-3 border border-[#00000042] flex flex-row justify-between space-x-2 text-base font-medium cursor-pointer "
+                  >
+                    <span className="inline-block self-center">
+                      {selectedPayoutAddress.name
+                        ? payoutAddresses.find(
+                            (item) => item.name === selectedPayoutAddress.name
+                          ).name
+                        : "Payout Address"}
+                    </span>
+                    <GoChevronDown
+                      className={
+                        "text-xl text-[#6D7D93] self-center " +
+                        cn(showDropdown2 && "transform rotate-180")
+                      }
+                    />
+                  </div>
+
+                  {/* dropdown  */}
+
+                  <DropDownList
+                    items={payoutAddresses}
+                    onSelect={onSelectPayoutAddress}
+                    show={showDropdown2}
+                    closeSelf={() => setShowDropdown2(false)}
+                  />
+                </div>
               </div>
 
               <div className="flex flex-row justify-end items-center space-x-8">

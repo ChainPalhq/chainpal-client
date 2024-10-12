@@ -3,7 +3,7 @@ import OTPField from "./otpfield";
 import { BsArrowCounterclockwise } from "react-icons/bs";
 import cn from "classnames";
 import { useLocation } from "wouter";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import useCountdownTimer from "../utils/hooks/usecountdowntimer";
 import Loader from "./loader";
 import { endpoints, createFetcher } from "../utils/fetchhelper";

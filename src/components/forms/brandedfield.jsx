@@ -13,6 +13,7 @@ export default function BrandedField({
   as = "input",
   required = false,
   LabelRender = null,
+  iconPadding = false,
   ...props
 }) {
   const [focused, setFocused] = useState(false);
@@ -56,7 +57,7 @@ export default function BrandedField({
         )}
 
         {Icon && (
-          <div className="absolute left-4 top-[30%]  ">
+          <div className="absolute left-4  top-1/2 -translate-y-1/2  ">
             <Icon
               className={
                 " text-xl   " +
@@ -81,6 +82,7 @@ export default function BrandedField({
             " form-field-primary " +
             cn({
               " pl-4 ": !(Icon || image),
+              " pl-16 ": (Icon || image) && iconPadding,
             })
           }
           placeholder={placeholder}
