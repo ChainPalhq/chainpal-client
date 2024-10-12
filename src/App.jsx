@@ -4,6 +4,7 @@ import SignIn from "./pages/signin";
 import Onboard from "./pages/onboard";
 import Wallet from "./pages/wallet";
 import FiatWallet from "./pages/fiatwallet";
+import CryptoWallet from "./pages/cryptowallet";
 import Verify from "./pages/verify";
 import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/payout" component={Payout} />
           <Route path="/wallet" component={Wallet} />
           <Route path="/wallet/fiat" component={FiatWallet} />
+          <Route path="/wallet/crypto" component={CryptoWallet} />
         </Switch>
       </QueryClientProvider>
     </div>

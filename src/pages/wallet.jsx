@@ -56,7 +56,7 @@ export default function Wallet() {
             return (
               <div
                 key={i}
-                className="bg-[#F8F9FD] flex flex-col p-6 space-y-4 rounded self-stretch group hover:bg-primary cursor-default "
+                className="bg-[#F8F9FD] flex flex-col p-6 space-y-4 rounded self-stretch group hover:bg-primary cursor-default min-w-[290px] "
               >
                 <div className="flex flex-row justify-between">
                   <h1 className="text-[#6D7D93] group-hover:text-white">

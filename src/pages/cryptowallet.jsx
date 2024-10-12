@@ -6,25 +6,28 @@ import NumberFormat from "../components/numberformat";
 import { IoIosArrowRoundUp } from "react-icons/io";
 import RecentTransactions from "../components/recenttransactions";
 import SwapWidget from "../components/swapwidget";
-import FlagNGN from "../assets/images/flag-ngn.png";
-import FlagUSD from "../assets/images/flag-usd.png";
+import USDTIcon from "../assets/images/usdt_crypto.png";
+import BitcoinIcon from "../assets/images/bitcoin_crypto.png";
+import USDCIcon from "../assets/images/usdc_crypto.png";
 import { BiPlusMedical } from "react-icons/bi";
 
 const walletStats = [
   {
-    name: "NGN",
-    img: FlagNGN,
-    currencyPrefix: "₦",
+    name: "BTC",
+    img: BitcoinIcon,
+  },
+  {
+    name: "USDT",
+    img: USDTIcon,
   },
 
   {
-    name: "USD",
-    img: FlagUSD,
-    currencyPrefix: "$",
+    name: "USDC",
+    img: USDCIcon,
   },
 ];
 
-export default function FiatWallet() {
+export default function CryptoWallet() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -48,8 +51,8 @@ export default function FiatWallet() {
           title="Wallet"
           crumbs={[
             {
-              name: "Fiat",
-              href: "/wallet/fiat",
+              name: "Crypto",
+              href: "/wallet/cryptp",
             },
           ]}
         />
@@ -74,8 +77,9 @@ export default function FiatWallet() {
                 </div>
                 <span className="text-2xl inline-block font-bold text-[#6D7D93] group-hover:text-white">
                   <NumberFormat
-                    value={i * 150 + 70}
-                    prefix={v.currencyPrefix + " "}
+                    value={i * 150.55 + 70.15}
+                    prefix=""
+                    toFixed={2}
                   />
                 </span>
 
@@ -91,13 +95,6 @@ export default function FiatWallet() {
               </div>
             );
           })}
-
-          <div className="bg-[#F8F9FD] center p-6 space-y-4  rounded self-stretch group hover:bg-primary cursor-pointer  min-w-[290px]  ">
-            <BiPlusMedical className="text-[#6D7D93] group-hover:text-white text-4xl" />
-            <p className="text-[#6D7D93] group-hover:text-white text-lg">
-              Add Currency
-            </p>
-          </div>
         </div>
 
         <div className="px-6 space-y-6">
