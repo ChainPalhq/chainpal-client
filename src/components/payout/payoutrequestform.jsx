@@ -15,7 +15,7 @@ export default function PayoutRequestForm({ hideMe }) {
     <>
       <BlurOverlay />
 
-      <div className="rounded bg-white flex flex-col justify-start items-center fixed top-1/2 left-1/2 z-20 drop-shadow-xl -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-lg min-h-[30vh] space-y-4 border">
+      <div className="rounded bg-white flex flex-col justify-start items-center fixed top-1/2 left-1/2 z-20 shadow-xl shadow-black/20 -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-lg min-h-[30vh] space-y-4 border">
         <div className="space-y-1 center">
           <h1 className="text-2xl text-primary font-bold">Payout Request</h1>
           <p className="text-sm font-medium text-[#000000CC] text-center">

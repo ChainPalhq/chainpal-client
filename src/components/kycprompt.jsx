@@ -5,7 +5,7 @@ export default function KYCPrompt() {
     <>
       <BlurOverlay />
 
-      <div className="rounded bg-white center fixed top-1/2 left-1/2 z-20 drop-shadow-xl -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-md min-h-[30vh] space-y-4 border">
+      <div className="rounded bg-white center fixed top-1/2 left-1/2 z-20 shadow-xl shadow-black/20 -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-md min-h-[30vh] space-y-4 border">
         <h1 className="text-xl text-primary font-bold">Welcome</h1>
 
         <p className="text-[#000000CC] text-sm text-center">

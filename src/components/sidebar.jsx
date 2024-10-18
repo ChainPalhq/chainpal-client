@@ -61,7 +61,7 @@ const sidebarItems = [
         name: "Store Front",
 
         img: SL11,
-        pathname: "/store-front",
+        pathname: "/storefront",
       },
 
       {

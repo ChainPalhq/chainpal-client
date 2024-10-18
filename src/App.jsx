@@ -14,6 +14,8 @@ import Dashboard from "./pages/dashboard";
 import Transactions from "./pages/transactions";
 import PaymentLink from "./pages/paymentlink";
 import TransactionDetail from "./pages/transactiondetail";
+import StoreFront from "./pages/storefront";
+import Customers from "./pages/customers";
 import Payout from "./pages/payout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -50,6 +52,8 @@ function App() {
           <Route path="/invoice" component={Invoice} />
           <Route path="/invoice/new" component={CreateInvoice} />
           <Route path="/payment-link" component={PaymentLink} />
+          <Route path="/storefront" component={StoreFront} />
+          <Route path="/customers" component={Customers} />
         </Switch>
       </QueryClientProvider>
     </div>

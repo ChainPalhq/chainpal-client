@@ -28,7 +28,7 @@ export default function BrandedField({
   }
 
   return (
-    <div className="space-y-2  text-[#6D7D93] w-full">
+    <div className="space-y-0   text-[#6D7D93] w-full">
       {LabelRender ? (
         <LabelRender htmlFor={name}>
           {" "}

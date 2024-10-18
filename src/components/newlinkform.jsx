@@ -2,13 +2,14 @@ import BlurOverlay from "./bluroverlay";
 import { Formik, Form, Field } from "formik";
 import { FaNairaSign } from "react-icons/fa6";
 import BrandedField from "./forms/brandedfield";
+import { FiPlus } from "react-icons/fi";
 
 export default function NewLinkForm({ hideMe }) {
   return (
     <>
       <BlurOverlay />
 
-      <div className="rounded bg-white flex flex-col justify-start items-center fixed top-1/2 left-1/2 z-20 drop-shadow-xl -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-lg min-h-[30vh] space-y-4 border max-h-[80vh] overflow-y-scroll custom-scrollbar">
+      <div className="rounded bg-white flex flex-col justify-start items-center fixed top-1/2 left-1/2 z-20 shadow-xl shadow-black/20 -translate-y-1/2 -translate-x-1/2 p-6 w-full max-w-lg min-h-[30vh] space-y-4 border max-h-[80vh] overflow-y-scroll custom-scrollbar">
         <div className="space-y-1 center">
           <h1 className="text-2xl text-primary font-bold">New Payment Link</h1>
         </div>
@@ -20,7 +21,7 @@ export default function NewLinkForm({ hideMe }) {
             {({ isValid }) => {
               return (
                 <Form className="space-y-4 w-full">
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93]">Title</label>
                     <BrandedField
                       name="title"
@@ -30,7 +31,7 @@ export default function NewLinkForm({ hideMe }) {
                     />
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93]">
                       Description
                     </label>
@@ -43,7 +44,7 @@ export default function NewLinkForm({ hideMe }) {
                     />
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93] flex flex-col">
                       <span>SEO Image (Optional)</span>
                       <span className="text-xs text-[#BDC1C6]">
@@ -53,15 +54,13 @@ export default function NewLinkForm({ hideMe }) {
                         under 1 MB.
                       </span>
                     </label>
-                    <BrandedField
-                      name="seoImage"
-                      type="text"
-                      placeholder="Choose File"
-                      extraClasses="py-2"
-                    />
+                    <div className="cursor-pointer form-field-primary  flex flex-row justify-center items-center space-x-2 border-dashed text-[#BDC1C6] hover:text-[#727578]">
+                      <FiPlus />
+                      <span> Choose File</span>
+                    </div>
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <div className="flex flex-row w-max justify-start items-center space-x-2">
                       <Field
                         name="isFixedPayment"
@@ -84,16 +83,22 @@ export default function NewLinkForm({ hideMe }) {
                     />
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93]">Custom URL</label>
-                    <BrandedField
-                      name="customURL"
-                      type="text"
-                      extraClasses="py-2"
-                    />
+
+                    <div className="flex flex-row justify-start items-center">
+                      <span className="inline-block self-stretch bg-primary text-white  font-bold p-2 rounded-l-[5px]  z-10 ">
+                        pay.chainpal.xyz/
+                      </span>
+                      <BrandedField
+                        name="customURL"
+                        type="text"
+                        extraClasses="py-2 -translate-x-1"
+                      />
+                    </div>
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93]">
                       Send Notifications To
                     </label>
@@ -105,7 +110,7 @@ export default function NewLinkForm({ hideMe }) {
                     />
                   </div>
 
-                  <div className="max-w-[437px] relative">
+                  <div className="max-w-[437px] relative space-y-1">
                     <label className="text-sm text-[#6D7D93]">
                       Redirect after payment (Optional)
                     </label>
@@ -126,7 +131,11 @@ export default function NewLinkForm({ hideMe }) {
                       Cancel
                     </button>
 
-                    <button type="submit" className="btn-1 py-2 w-max px-8">
+                    <button
+                      disabled={isValid}
+                      type="submit"
+                      className="btn-1 py-2 w-max px-8"
+                    >
                       Submit
                     </button>
                   </div>
