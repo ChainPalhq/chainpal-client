@@ -4,8 +4,6 @@ import cn from "classnames";
 import SubHeader from "../components/subheader";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
-import FiatPayoutTable from "../components/payout/fiatpayouttable";
-import CryptoPayoutTable from "../components/payout/cryptopayouttable";
 import PayoutRequestForm from "../components/payout/payoutrequestform";
 import NumberFormat from "../components/numberformat";
 

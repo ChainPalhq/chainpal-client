@@ -6,6 +6,7 @@ import Wallet from "./pages/wallet";
 import FiatWallet from "./pages/fiatwallet";
 import CryptoWallet from "./pages/cryptowallet";
 import Invoice from "./pages/invoice";
+import CreateInvoice from "./pages/createinvoice";
 import Verify from "./pages/verify";
 import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/wallet/fiat" component={FiatWallet} />
           <Route path="/wallet/crypto" component={CryptoWallet} />
           <Route path="/invoice" component={Invoice} />
+          <Route path="/invoice/new" component={CreateInvoice} />
         </Switch>
       </QueryClientProvider>
     </div>

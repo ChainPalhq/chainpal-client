@@ -14,6 +14,7 @@ export default function BrandedField({
   required = false,
   LabelRender = null,
   iconPadding = false,
+  extraClasses = "",
   ...props
 }) {
   const [focused, setFocused] = useState(false);
@@ -27,7 +28,7 @@ export default function BrandedField({
   }
 
   return (
-    <div className="space-y-2  text-foreground w-full">
+    <div className="space-y-2  text-[#6D7D93] w-full">
       {LabelRender ? (
         <LabelRender htmlFor={name}>
           {" "}
@@ -37,7 +38,7 @@ export default function BrandedField({
       ) : (
         <label
           htmlFor={name}
-          className="basic-text font-semibold block capitalize text-foreground "
+          className="basic-text font-semibold block capitalize text-[#6D7D93] "
         >
           {label} {required && <span className="inline-block "> * </span>}
         </label>
@@ -80,6 +81,7 @@ export default function BrandedField({
           as={as}
           className={
             " form-field-primary " +
+            extraClasses +
             cn({
               " pl-4 ": !(Icon || image),
               " pl-16 ": (Icon || image) && iconPadding,
