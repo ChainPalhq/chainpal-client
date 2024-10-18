@@ -163,7 +163,11 @@ export default function CryptoPayout({ hideMe }) {
                   Cancel
                 </button>
 
-                <button type="submit" className="btn-1 py-2 w-max px-8">
+                <button
+                  disabled={isValid}
+                  type="submit"
+                  className="btn-1 py-2 w-max px-8"
+                >
                   Submit
                 </button>
               </div>

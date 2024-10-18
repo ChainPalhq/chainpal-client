@@ -12,6 +12,7 @@ import AccountType from "./pages/accounttype";
 import BusinessName from "./pages/businessname";
 import Dashboard from "./pages/dashboard";
 import Transactions from "./pages/transactions";
+import PaymentLink from "./pages/paymentlink";
 import TransactionDetail from "./pages/transactiondetail";
 import Payout from "./pages/payout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/wallet/crypto" component={CryptoWallet} />
           <Route path="/invoice" component={Invoice} />
           <Route path="/invoice/new" component={CreateInvoice} />
+          <Route path="/payment-link" component={PaymentLink} />
         </Switch>
       </QueryClientProvider>
     </div>
